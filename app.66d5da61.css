@@ -1,0 +1,538 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.custom-cursor {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+  cursor: none;
+  mix-blend-mode: difference;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  background-color: #fff;
+  transition: -webkit-transform 350ms ease;
+  transition: transform 350ms ease;
+  transition: transform 350ms ease, -webkit-transform 350ms ease;
+  transition-delay: 200ms;
+  transition-property: opacity, height, width, -webkit-transform;
+  transition-property: transform, opacity, height, width;
+  transition-property: transform, opacity, height, width, -webkit-transform;
+  -webkit-transform: translate(-50%, -50%) translate3d(0, 0, 0);
+          transform: translate(-50%, -50%) translate3d(0, 0, 0);
+  z-index: 9999;
+}
+
+.custom-cursor--big {
+  transition-delay: 100ms;
+  width: 1000px;
+  height: 1000px;
+}
+
+.custom-cursor--bigger {
+  -webkit-transform: translate(-50%, -50%) scale(100);
+          transform: translate(-50%, -50%) scale(100);
+}
+
+.custom-cursor--showing {
+  opacity: 1;
+}
+
+.custom-cursor--select {
+  width: 10px;
+  border-radius: 0;
+}
+
+html {
+  background-color: #fff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Montserrat, Raleway, Roboto, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fff;
+}
+
+* {
+  cursor: none !important;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Montserrat Regular"), local("Montserrat-Regular"), url(https://fonts.gstatic.com/s/montserrat/v12/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Montserrat Bold"), local("Montserrat-Bold"), url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_dJE3gnD_vx3rCs.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+header {
+  height: 100vh;
+  display: flex;
+  width: 100%;
+  background-color: #fff;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  top: 0;
+  position: fixed;
+}
+@media (max-width: 480px) {
+  header {
+    justify-content: center;
+  }
+}
+header .name {
+  margin: 2rem 4rem;
+}
+header .name h1 {
+  font-size: 10vw;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  font-family: Montserrat, sans-serif;
+  -webkit-animation-delay: 0.75s;
+          animation-delay: 0.75s;
+}
+header .name h1::after {
+  -webkit-animation-delay: 0.75s;
+          animation-delay: 0.75s;
+}
+
+.content {
+  margin-top: 100vh;
+}
+.content section, .content footer {
+  margin-top: 4rem;
+  background: #F1F3F4;
+  position: relative;
+  line-height: 1.5em;
+}
+.content section div, .content footer div {
+  display: inline-block;
+}
+.content section ul, .content footer ul {
+  line-height: 1.5em;
+  margin: 0;
+}
+.content footer {
+  background: #0E0C0B;
+  color: #F1F3F4;
+}
+.content footer h1 {
+  color: #F1F3F4;
+}
+.content .code {
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  font-family: monospace;
+  font-size: 20px;
+  color: transparent;
+  text-shadow: 0 0 5px rgba(32, 32, 32, 0.3);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.content .code > pre {
+  margin: 0;
+}
+a {
+  position: relative;
+  font-weight: bold;
+  text-decoration: none;
+  color: #F1F3F4;
+  transition: color 300ms ease;
+}
+a:hover {
+  color: #fff;
+}
+a:hover::after {
+  width: 100%;
+}
+a::after {
+  position: absolute;
+  content: "";
+  width: 0;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  height: 2px;
+  transition: width 300ms ease;
+}
+
+a.inline {
+  color: #323232;
+}
+a.inline:hover {
+  color: #444;
+}
+a.inline::after {
+  background: #444;
+}
+
+h1:not(.name) {
+  padding: 0.75em 0;
+  margin: 0.75em 0;
+  position: relative;
+}
+h1:not(.name)::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #323232;
+}
+
+h3 {
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
+  color: #323232;
+  padding: 1em 0;
+}
+
+.invisible {
+  opacity: 0;
+}
+
+.reveal-text, .reveal-text::after {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+          animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  will-change: transform, clip-path;
+}
+
+.gradient1::after {
+  background-image: linear-gradient(45deg, #EE0979, #FF6A00);
+}
+
+.gradient2::after {
+  background-image: linear-gradient(45deg, #3023AE, #C86DD7);
+}
+
+.gradient3::after {
+  background-image: linear-gradient(45deg, #00F260, #049DBB, #0575E6);
+}
+
+.gradient4::after {
+  background-image: linear-gradient(45deg, #005bea, #00c6fb);
+}
+
+.reveal-text {
+  position: relative;
+  display: inline-block;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-animation-name: reveal-text;
+          animation-name: reveal-text;
+  color: #323232;
+  white-space: nowrap;
+}
+.reveal-text::after {
+  content: "";
+  position: absolute;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #323232;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transform-origin: 0 50%;
+          transform-origin: 0 50%;
+  pointer-events: none;
+  -webkit-animation-name: revealer-text;
+          animation-name: revealer-text;
+}
+
+@-webkit-keyframes reveal-text {
+  from {
+    -webkit-clip-path: inset(0 100% 0 0);
+            clip-path: inset(0 100% 0 0);
+  }
+  to {
+    -webkit-clip-path: inset(0 0 0 0);
+            clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes reveal-text {
+  from {
+    -webkit-clip-path: inset(0 100% 0 0);
+            clip-path: inset(0 100% 0 0);
+  }
+  to {
+    -webkit-clip-path: inset(0 0 0 0);
+            clip-path: inset(0 0 0 0);
+  }
+}
+@-webkit-keyframes revealer-text {
+  0%, 50% {
+    -webkit-transform-origin: 0 50%;
+            transform-origin: 0 50%;
+  }
+  60%, 100% {
+    -webkit-transform-origin: 100% 50%;
+            transform-origin: 100% 50%;
+  }
+  60% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+  }
+  100% {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+  }
+}
+@keyframes revealer-text {
+  0%, 50% {
+    -webkit-transform-origin: 0 50%;
+            transform-origin: 0 50%;
+  }
+  60%, 100% {
+    -webkit-transform-origin: 100% 50%;
+            transform-origin: 100% 50%;
+  }
+  60% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+  }
+  100% {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+  }
+}
+/* angle mixin */
+.angle--top-left {
+  position: relative;
+  overflow: hidden;
+  padding: 8vw;
+  -webkit-clip-path: polygon(0 calc(0% + 7vw), 100% 0, 100% 100%, 0 100%);
+          clip-path: polygon(0 calc(0% + 7vw), 100% 0, 100% 100%, 0 100%);
+}
+@supports not ((-webkit-clip-path: polygon(0 calc(0% + 7vw), 100% 0, 100% 100%, 0 100%)) or (clip-path: polygon(0 calc(0% + 7vw), 100% 0, 100% 100%, 0 100%))) {
+  .angle--top-left::before, .angle--top-left::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    z-index: 10;
+    display: block;
+    border-style: solid;
+  }
+  .angle--top-left::before {
+    top: 0;
+    border: 8vw 100vw 0 0 #fff transparent transparent transparent;
+  }
+}
+
+.angle--top-right {
+  position: relative;
+  overflow: hidden;
+  padding: 8vw;
+  -webkit-clip-path: polygon(0 0, 100% calc(0% + 7vw), 100% 100%, 0 100%);
+          clip-path: polygon(0 0, 100% calc(0% + 7vw), 100% 100%, 0 100%);
+}
+@supports not ((-webkit-clip-path: polygon(0 0, 100% calc(0% + 7vw), 100% 100%, 0 100%)) or (clip-path: polygon(0 0, 100% calc(0% + 7vw), 100% 100%, 0 100%))) {
+  .angle--top-right::before, .angle--top-right::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    z-index: 10;
+    display: block;
+    border-style: solid;
+  }
+  .angle--top-right::before {
+    top: 0;
+    border: 8vw 0 0 100vw #fff transparent transparent transparent;
+  }
+}
+
+.angle--bottom-left {
+  position: relative;
+  overflow: hidden;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 7vw));
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 7vw));
+}
+@supports not ((-webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 7vw))) or (clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 7vw)))) {
+  .angle--bottom-left::before, .angle--bottom-left::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    z-index: 10;
+    display: block;
+    border-style: solid;
+  }
+  .angle--bottom-left::after {
+    bottom: 0;
+    border: 0 100vw 8vw 0 transparent transparent #fff transparent;
+  }
+}
+
+.angle--bottom-right {
+  position: relative;
+  overflow: hidden;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% calc(100% - 7vw), 0 100%);
+          clip-path: polygon(0 0, 100% 0, 100% calc(100% - 7vw), 0 100%);
+}
+@supports not ((-webkit-clip-path: polygon(0 0, 100% 0, 100% calc(100% - 7vw), 0 100%)) or (clip-path: polygon(0 0, 100% 0, 100% calc(100% - 7vw), 0 100%))) {
+  .angle--bottom-right::before, .angle--bottom-right::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    z-index: 10;
+    display: block;
+    border-style: solid;
+  }
+  .angle--bottom-right::after {
+    bottom: 0;
+    border: 0 0 8vw 100vw transparent transparent #fff transparent;
+  }
+}
+
+.angle--both-left-left {
+  position: relative;
+  overflow: hidden;
+  padding: 8vw;
+  -webkit-clip-path: polygon(0 calc(0% + 7vw), 100% 0, 100% 100%, 0 calc(100% - 7vw));
+          clip-path: polygon(0 calc(0% + 7vw), 100% 0, 100% 100%, 0 calc(100% - 7vw));
+}
+@supports not ((-webkit-clip-path: polygon(0 calc(0% + 7vw), 100% 0, 100% 100%, 0 calc(100% - 7vw))) or (clip-path: polygon(0 calc(0% + 7vw), 100% 0, 100% 100%, 0 calc(100% - 7vw)))) {
+  .angle--both-left-left::before, .angle--both-left-left::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    z-index: 10;
+    display: block;
+    border-style: solid;
+  }
+  .angle--both-left-left::before {
+    top: 0;
+    border: 8vw 100vw 0 0 #fff transparent transparent transparent;
+  }
+  .angle--both-left-left::after {
+    bottom: 0;
+    border: 0 100vw 8vw 0 transparent transparent #fff transparent;
+  }
+}
+
+.angle--both-right-right {
+  position: relative;
+  overflow: hidden;
+  padding: 8vw;
+  -webkit-clip-path: polygon(0 0, 100% calc(0% + 7vw), 100% calc(100% - 7vw), 0 100%);
+          clip-path: polygon(0 0, 100% calc(0% + 7vw), 100% calc(100% - 7vw), 0 100%);
+}
+@supports not ((-webkit-clip-path: polygon(0 0, 100% calc(0% + 7vw), 100% calc(100% - 7vw), 0 100%)) or (clip-path: polygon(0 0, 100% calc(0% + 7vw), 100% calc(100% - 7vw), 0 100%))) {
+  .angle--both-right-right::before, .angle--both-right-right::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    z-index: 10;
+    display: block;
+    border-style: solid;
+  }
+  .angle--both-right-right::before {
+    top: 0;
+    border: 8vw 0 0 100vw #fff transparent transparent transparent;
+  }
+  .angle--both-right-right::after {
+    bottom: 0;
+    border: 0 0 8vw 100vw transparent transparent #fff transparent;
+  }
+}
+
+.angle--both-left-right {
+  position: relative;
+  overflow: hidden;
+  padding: 8vw;
+  -webkit-clip-path: polygon(0 calc(0% + 7vw), 100% 0, 100% calc(100% - 7vw), 0 100%);
+          clip-path: polygon(0 calc(0% + 7vw), 100% 0, 100% calc(100% - 7vw), 0 100%);
+}
+@supports not ((-webkit-clip-path: polygon(0 calc(0% + 7vw), 100% 0, 100% calc(100% - 7vw), 0 100%)) or (clip-path: polygon(0 calc(0% + 7vw), 100% 0, 100% calc(100% - 7vw), 0 100%))) {
+  .angle--both-left-right::before, .angle--both-left-right::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    z-index: 10;
+    display: block;
+    border-style: solid;
+  }
+  .angle--both-left-right::before {
+    top: 0;
+    border: 8vw 100vw 0 0 #fff transparent transparent transparent;
+  }
+  .angle--both-left-right::after {
+    bottom: 0;
+    border: 0 0 8vw 100vw transparent transparent #fff transparent;
+  }
+}
+
+.angle--both-right-left {
+  position: relative;
+  overflow: hidden;
+  padding: 8vw;
+  -webkit-clip-path: polygon(0 0, 100% calc(0% + 7vw), 100% 100%, 0 calc(100% - 7vw));
+          clip-path: polygon(0 0, 100% calc(0% + 7vw), 100% 100%, 0 calc(100% - 7vw));
+}
+@supports not ((-webkit-clip-path: polygon(0 0, 100% calc(0% + 7vw), 100% 100%, 0 calc(100% - 7vw))) or (clip-path: polygon(0 0, 100% calc(0% + 7vw), 100% 100%, 0 calc(100% - 7vw)))) {
+  .angle--both-right-left::before, .angle--both-right-left::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    z-index: 10;
+    display: block;
+    border-style: solid;
+  }
+  .angle--both-right-left::before {
+    top: 0;
+    border: 8vw 0 0 100vw #fff transparent transparent transparent;
+  }
+  .angle--both-right-left::after {
+    bottom: 0;
+    border: 0 100vw 8vw 0 transparent transparent #fff transparent;
+  }
+}
+
+.angle__content {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.angle--colour {
+  color: #fff;
+  background-color: #2196F3;
+  text-align: center;
+  padding: 10% 0;
+}
