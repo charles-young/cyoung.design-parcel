@@ -4,4 +4,4 @@ var t;!function(e,n){"function"==typeof t&&t.amd?t([],n):"object"==typeof module
 },{}],"QvaY":[function(require,module,exports) {
 "use strict";var e=t(require("scrolltrigger-classes/ScrollTrigger.min"));function t(e){return e&&e.__esModule?e:{default:e}}document.addEventListener("DOMContentLoaded",function(){new e.default({toggle:{visible:"reveal-text",hidden:"invisible"},offset:{x:0,y:20},addHeight:!0,once:!0},document.body,window)});
 },{"scrolltrigger-classes/ScrollTrigger.min":"ierA"}]},{},["QvaY"], null)
-//# sourceMappingURL=dist/js.aee04c7a.map
+//# sourceMappingURL=js.aee04c7a.map
