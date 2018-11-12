@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.custom-cursor {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+  cursor: none;
+  mix-blend-mode: difference;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  background-color: #fff;
+  transition: transform 350ms ease;
+  transition-delay: 200ms;
+  transition-property: transform, opacity, height, width;
+  transform: translate(-50%, -50%) scale(1);
+  z-index: 9999;
+}
+.custom-cursor--big {
+  transition-delay: 100ms;
+  width: 1000px;
+  height: 1000px;
+
+}
+.custom-cursor--bigger {
+  transform: translate(-50%, -50%) scale(100);
+}
+.custom-cursor--showing {
+  opacity: 1;
+}
+.custom-cursor--select {
+  width: 10px;
+  border-radius: 0;
+}

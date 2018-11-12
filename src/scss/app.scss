@@ -1,0 +1,414 @@
+@import "cursor";
+
+html {
+  background-color: #fff;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Montserrat, Raleway, Roboto, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fff;
+}
+* {
+  cursor: none !important;
+  user-select: none;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  monospace;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Montserrat Regular'), local('Montserrat-Regular'), url(https://fonts.gstatic.com/s/montserrat/v12/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Montserrat Bold'), local('Montserrat-Bold'), url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_dJE3gnD_vx3rCs.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+header {
+  height: 100vh;
+  display: flex;
+  width: 100%;
+  background-color: #fff;
+  flex-direction: column;
+  @media (max-width: 480px) {
+    justify-content: center;
+  }
+  justify-content: flex-end;
+  align-items: flex-start;
+  top: 0;
+  position: fixed;
+  .name {
+    margin: 2rem 4rem;
+    h1 {
+      font-size: 10vw;
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      font-family: Montserrat, sans-serif;
+      animation-delay: 0.75s;
+      &::after {
+        animation-delay: 0.75s;
+      }
+    }
+  }
+}
+
+.content {
+  margin-top: 100vh;
+  section, footer {
+    margin-top: 4rem;
+    background: #F1F3F4;
+    position: relative;
+    line-height: 1.5em;
+    div {
+      display: inline-block;
+    }
+    ul {
+      line-height: 1.5em;
+      margin: 0;
+    }
+  }
+  footer {
+    background: #0E0C0B;
+    color: #F1F3F4;
+    h1 {
+      color: #F1F3F4;
+    }
+  }
+  .code {
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    font-family: monospace;
+    font-size: 20px;
+    color: transparent;
+    text-shadow: 0 0 5px rgba(32, 32, 32, 0.3);
+    user-select: none;
+    > pre {
+      margin: 0;
+    }
+    .code-background {
+      &::after {
+
+      }
+    }
+  }
+}
+
+a {
+  position: relative;
+  font-weight: bold;
+  text-decoration: none;
+  color: #F1F3F4;
+  transition: color 300ms ease;
+  &:hover {
+    color: #fff;
+    &::after {
+      width: 100%;
+    }
+  }
+  &::after {
+    position: absolute;
+    content: '';
+    width: 0;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    height: 2px;
+    transition: width 300ms ease;
+  }
+}
+
+a.inline {
+  color: #323232;
+  &:hover {
+    color: #444;
+  }
+  &::after {
+    background: #444;
+  }
+}
+
+h1:not(.name) {
+  padding: 0.75em 0;
+  margin: 0.75em 0;
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #323232;
+  }
+}
+
+h3 {
+  max-width: max-content;
+  color: #323232;
+  padding: 1em 0;
+}
+
+.invisible {
+  opacity: 0;
+}
+
+.reveal-text, .reveal-text::after {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);
+  will-change: transform;
+}
+
+.gradient1 {
+  &::after {
+    background-image: linear-gradient(45deg, #EE0979, #FF6A00);
+  }
+}
+
+.gradient2 {
+  &::after {
+    background-image: linear-gradient(45deg, #3023AE, #C86DD7);
+  }
+}
+
+.gradient3 {
+  &::after {
+    background-image: linear-gradient(45deg, #00F260, #049DBB, #0575E6);
+  }
+}
+
+.gradient4 {
+  &::after {
+    background-image: linear-gradient(45deg, #005bea, #00c6fb);
+  }
+}
+
+.reveal-text {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+  animation-name: reveal-text;
+  color: #323232;
+  white-space: nowrap;
+
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #323232;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    pointer-events: none;
+    animation-name: revealer-text;
+  }
+}
+
+@keyframes reveal-text {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes revealer-text {
+  0%, 50% {
+    transform-origin: 0 50%;
+  }
+
+  60%, 100% {
+    transform-origin: 100% 50%;
+  }
+
+  60% {
+    transform: scaleX(1);
+  }
+
+  100% {
+    transform: scaleX(0);
+  }
+}
+
+/* angle mixin */
+
+// $angle: The angle in degrees: 1 - 45
+// $angle-position-y: The Y position of the angle: top | bottom | both
+// $angle-position-x: The X position of the angle: left | right
+// $angle-position-bottom-x: The X position of the bottom angle if using 'both' for $angle-position-y: left | right
+// $fallback: Create a fallback for older browsers: true | false
+// $fallback-color: Fallback colour for older browsers: Hex color
+
+@mixin angle-edge($angle, $angle-position-y, $angle-position-x, $angle-position-bottom-x: '', $fallback: true, $fallback-color: #fff) {
+  position: relative;
+  overflow: hidden;
+
+  // Converts degrees to VW, 100vw = 45deg using this technique
+  @if $angle > 45 {
+    $angle: 0;
+    @error 'Invalid angle, it must be between 1-45';
+  }
+  @if $angle < 46 {
+    $angle: convertDegToVW($angle);
+  }
+
+  @if $angle-position-bottom-x == '' {
+    $angle-position-bottom-x: $angle-position-x;
+  }
+
+  $angle-calc-top: calc(0% + #{$angle}vw);
+  $angle-calc-bottom: calc(100% - #{$angle}vw);
+
+  $clip-path-top: 0 0, 100% 0;
+  $clip-path-bottom: 100% 100%, 0 100%;
+
+  $border-width-top: '';
+  $border-width-bottom: '';
+  $border-color-top: '';
+  $border-color-bottom: '';
+
+  @if $angle-position-y == 'top' or $angle-position-y == 'both' {
+
+    @if $angle-position-x == 'left' {
+      $clip-path-top: 0 $angle-calc-top, 100% 0;
+      padding: #{$angle + 1}vw;
+      $border-width-top: #{$angle + 1}vw 100vw 0 0;
+    }
+
+    @if $angle-position-x == 'right' {
+      $clip-path-top: 0 0, 100% $angle-calc-top;
+      padding: #{$angle + 1}vw;
+      $border-width-top: #{$angle + 1}vw 0 0 100vw;
+    }
+
+    $border-color-top: $fallback-color transparent transparent transparent;
+  }
+
+  @if $angle-position-y == 'bottom' or $angle-position-y == 'both' {
+
+    @if $angle-position-y == 'both' and $angle-position-x != $angle-position-bottom-x {
+      $angle-position-x: $angle-position-bottom-x;
+    }
+
+    @if $angle-position-x == 'left' {
+      $clip-path-bottom: 100% 100%, 0 $angle-calc-bottom;
+
+      $border-width-bottom: 0 100vw #{$angle + 1}vw 0;
+    }
+
+    @if $angle-position-x == 'right' {
+      $clip-path-bottom: 100% $angle-calc-bottom, 0 100%;
+
+      $border-width-bottom: 0 0 #{$angle + 1}vw 100vw;
+    }
+
+    $border-color-bottom: transparent transparent $fallback-color transparent;
+  }
+
+  $clip-path: polygon($clip-path-top, $clip-path-bottom);
+  clip-path: $clip-path;
+
+  // Fallback for clip-path with solid colours
+  @if $fallback {
+
+    @supports not (clip-path: $clip-path) {
+
+      &::before, &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        z-index: 10;
+        display: block;
+        border-style: solid;
+      }
+
+      @if $angle-position-y == 'top' or $angle-position-y == 'both' {
+        &::before {
+          top: 0;
+          border: $border-width-top $border-color-top;
+        }
+      }
+
+      @if $angle-position-y == 'bottom' or $angle-position-y == 'both' {
+        &::after {
+          bottom: 0;
+          border: $border-width-bottom $border-color-bottom;
+        }
+      }
+
+    }
+
+  }
+
+}
+
+// Converts degrees to VW, 100vw = 45deg using this technique
+@function convertDegToVW($angle) {
+  @return round($angle*2.22);
+}
+
+// Classes
+.angle--top-left {
+  @include angle-edge($angle: 3, $angle-position-y: 'top', $angle-position-x: 'left');
+}
+
+.angle--top-right {
+  @include angle-edge($angle: 3, $angle-position-y: 'top', $angle-position-x: 'right');
+}
+
+.angle--bottom-left {
+  @include angle-edge($angle: 3, $angle-position-y: 'bottom', $angle-position-x: 'left');
+}
+
+.angle--bottom-right {
+  @include angle-edge($angle: 3, $angle-position-y: 'bottom', $angle-position-x: 'right');
+}
+
+.angle--both-left-left {
+  @include angle-edge($angle: 3, $angle-position-y: 'both', $angle-position-x: 'left');
+}
+
+.angle--both-right-right {
+  @include angle-edge($angle: 3, $angle-position-y: 'both', $angle-position-x: 'right');
+}
+
+.angle--both-left-right {
+  @include angle-edge($angle: 3, $angle-position-y: 'both', $angle-position-x: 'left', $angle-position-bottom-x: 'right');
+}
+
+.angle--both-right-left {
+  @include angle-edge($angle: 3, $angle-position-y: 'both', $angle-position-x: 'right', $angle-position-bottom-x: 'left');
+}
+
+.angle__content {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.angle--colour {
+  color: #fff;
+  background-color: #2196F3;
+  text-align: center;
+  padding: 10% 0;
+}
