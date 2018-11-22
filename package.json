@@ -3,21 +3,25 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "homepage": "https://cyoung.design/",
+  "homepage": "https://cyoung.design",
   "scripts": {
-    "start": "parcel src/**.html",
-    "build": "parcel build src/index.html --public-url ./dist",
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html --public-url ./",
     "deploy": "gh-pages -d ./dist"
   },
   "keywords": [],
   "author": "Charles Young <young.charles90@gmail.com> (https://cyoung.design)",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.1.5",
+    "@babel/preset-env": "^7.1.5",
     "cssnano": "^4.1.7",
     "sass": "^1.14.3"
   },
   "dependencies": {
     "autoprefixer": "^9.3.1",
+    "cursor": "^0.1.5",
+    "gh-pages": "^2.0.1",
     "postcss-modules": "^1.4.1",
     "postcss-scss": "^2.0.0",
     "scrolltrigger-classes": "^0.3.6"

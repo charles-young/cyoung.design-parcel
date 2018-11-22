@@ -14,19 +14,14 @@
   border-radius: 100%;
   background-color: #fff;
   transition: transform 350ms ease;
-  transition-delay: 200ms;
   transition-property: transform, opacity, height, width;
-  transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) translate3d(0, 0, 0);
   z-index: 9999;
 }
 .custom-cursor--big {
-  transition-delay: 100ms;
-  width: 1000px;
-  height: 1000px;
+  width: 100px;
+  height: 100px;
 
-}
-.custom-cursor--bigger {
-  transform: translate(-50%, -50%) scale(100);
 }
 .custom-cursor--showing {
   opacity: 1;
