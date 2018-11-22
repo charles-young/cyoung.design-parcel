@@ -41,6 +41,7 @@ code {
 }
 
 header {
+  backface-visibility: hidden;
   height: 100vh;
   display: flex;
   width: 100%;
@@ -166,6 +167,7 @@ h3 {
 }
 
 .reveal-text, .reveal-text::after {
+  backface-visibility: hidden;
   transform: translate3d(0, 0, 0);
   animation-duration: 1s;
   //animation-iteration-count: infinite;
