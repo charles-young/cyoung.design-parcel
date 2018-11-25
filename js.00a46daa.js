@@ -116,9 +116,9 @@ var _ScrollTrigger = _interopRequireDefault(require("scrolltrigger-classes/Scrol
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-document.addEventListener('DOMContentLoaded', function () {
-  window.onanimationiteration = console.log;
-  var trigger = new _ScrollTrigger.default({
+window.onload = function () {
+  console.log("OnLoad");
+  new _ScrollTrigger.default({
     toggle: {
       visible: 'reveal-text',
       hidden: 'invisible'
@@ -130,6 +130,15 @@ document.addEventListener('DOMContentLoaded', function () {
     addHeight: true,
     once: true
   }, document.body, window);
+  var name = document.querySelectorAll('.name');
+
+  for (var i = 0; i < name.length; i++) {
+    name[i].classList.add('reveal-text');
+    name[i].classList.remove('invisible');
+  }
+
+  var content = document.querySelector(".content");
+  content.classList.add('loaded');
 
   window.mobileAndTabletcheck = function () {
     var check = false;
@@ -145,18 +154,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (!window.mobileAndTabletcheck()) {
     (function () {
-      console.log("Using cursor.js");
-      var cursor = document.createElement("DIV");
-      cursor.setAttribute("class", "custom-cursor");
+      console.log('Using cursor.js');
+      var cursor = document.createElement('DIV');
+      cursor.setAttribute('class', 'custom-cursor');
       document.body.appendChild(cursor);
       var links = document.querySelectorAll('a');
       var initCursor = false;
 
-      for (var i = 0; i < links.length; i++) {
-        links[i].addEventListener('mouseover', function () {
+      for (var _i = 0; _i < links.length; _i++) {
+        links[_i].addEventListener('mouseover', function () {
           cursor.classList.add('custom-cursor--big');
         });
-        links[i].addEventListener('mouseout', function () {
+
+        links[_i].addEventListener('mouseout', function () {
           cursor.classList.remove('custom-cursor--big');
         });
       }
@@ -179,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function () {
       };
     })();
   }
-});
+};
 },{"scrolltrigger-classes/ScrollTrigger.min":"../node_modules/scrolltrigger-classes/ScrollTrigger.min.js"}],"../../../../.nvm/versions/node/v8.12.0/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -207,7 +217,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52278" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57882" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
