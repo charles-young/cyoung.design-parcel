@@ -1,20 +1,18 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
     <title>Charles Young</title>
     <link rel="stylesheet" href="./scss/app.scss">
+    <script defer src="./js/index.js"></script>
 </head>
 <body>
-<header class='title'>
-    <div class='name'>
-        <h1 class='reveal-text name'>Charles</h1>
-        <br/>
-        <h1 class='reveal-text name'>Young</h1>
-    </div>
+<header id='title'>
+    <h1 class='name invisible top'>Charles</h1>
+    <h1 class='name invisible bottom'>Young</h1>
 </header>
 <div class='content'>
-    <section class='angle--both-right-right code-background'>
+    <section class='angle--both-left-left'>
         <div class='code'>
             <pre>class App extends Component &#123;</pre>
             <pre>    render(</pre>
@@ -25,9 +23,7 @@
             <pre>            &lt;h1 className='reveal-text'&gt;Young&lt;/h1&gt;</pre>
             <pre>        &lt;\header&gt;</pre>
             <pre>        &lt;section className='angle--both-left-right code-background'&gt;</pre>
-            <pre>             &lt;ScrollAnimation animateIn='reveal-text gradient1'  animateOnce='true'&gt;</pre>
-            <pre>                  &lt;h1&gt;Languages and Frameworks&lt;/h1&gt;</pre>
-            <pre>             &lt;/ScrollAnimation></pre>
+            <pre>             &lt;h1 data-scroll="once" class="gradient1"&gt;Languages and Frameworks&lt;/h1&gt;</pre>
             <pre>             &lt;ul&gt;</pre>
             <pre>                  &lt;li&gt;HTML&lt;/li&gt;</pre>
             <pre>                  &lt;li&gt;CSS/SCSS/SASS&lt;/li&gt;</pre>
@@ -44,8 +40,7 @@
             <pre>    );</pre>
             <pre>&#125;</pre>
         </div>
-        <h1 data-scroll="once" class="reveal-text gradient1">Languages and Frameworks</h1>
-        <br/>
+        <h1 data-scroll="once" class="gradient1">Languages and Frameworks</h1>
         <ul>
             <li>HTML</li>
             <li>CSS/SCSS/SASS</li>
@@ -60,7 +55,9 @@
             <li>C, C++</li>
         </ul>
     </section>
-    <section class='angle--both-left-right'>
+    <section class='angle--both-right-left mask'>
+    </section>
+    <section class='angle--both-right-right'>
         <h1 data-scroll="once" class="gradient2">Experience & Leadership</h1>
         <h3>Freelance Web Developer</h3>
         <ul>
@@ -170,6 +167,5 @@
         </nav>
     </footer>
 </div>
-<script defer src="./js/index.js"></script>
 </body>
 </html>

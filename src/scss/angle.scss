@@ -1,0 +1,107 @@
+@mixin angle($pseudo, $flip: false, $flip2: false, $angle: 3deg) {
+  // Possible values for $pseudo are: before, after, both
+  @if $pseudo == 'before' or $pseudo == 'after' or $pseudo == 'both' {
+    position: relative;
+    z-index: 1;
+    $selector: if($pseudo == 'both', '&:before,&:after', '&:#{$pseudo}');
+
+    #{$selector} {
+      background: inherit;
+      content: '';
+      display: block;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      right: 0;
+      z-index: -1;
+      backface-visibility: hidden;
+    }
+
+    @if $pseudo == 'before' {
+      #{$selector} {
+        top: 0;
+
+        @if $flip {
+          transform: skewY($angle * -1);
+          transform-origin: 0 0;
+        } @else {
+          transform: skewY($angle);
+          transform-origin: 100% 0;
+        }
+      }
+    }
+
+    @if $pseudo == 'after' {
+      #{$selector} {
+        bottom: 0;
+
+        @if $flip2 {
+          transform: skewY($angle);
+          transform-origin: 0 100%;
+        } @else {
+          transform: skewY($angle * -1);
+          transform-origin: 100%;
+        }
+      }
+    }
+
+    @if $pseudo == 'both' {
+      &:before {
+        top: 0;
+
+        @if $flip {
+          transform: skewY($angle * -1);
+          transform-origin: 0 0;
+        } @else {
+          transform: skewY($angle);
+          transform-origin: 100% 0;
+        }
+      }
+
+      &:after {
+        bottom: 0;
+
+        @if $flip2 {
+          transform: skewY($angle);
+          transform-origin: 0 0;
+        } @else {
+          transform: skewY($angle * -1);
+          transform-origin: 100%;
+        }
+      }
+    }
+  }
+}
+
+// slanted edges here
+.angle--bottom-right {
+  @include angle(after);
+}
+
+.angle--bottom-left {
+  @include angle(after, true);
+}
+
+.angle--top-right {
+  @include angle(before);
+}
+
+.angle--top-left {
+  @include angle(before, true);
+}
+
+.angle--both-right-right {
+  @include angle(both);
+}
+
+.angle--both-left-right {
+  @include angle(both, true, false);
+}
+
+.angle--both-left-left {
+  @include angle(both, true, true);
+}
+
+.angle--both-right-left {
+  @include angle(both, false, true);
+}

@@ -1,8 +1,8 @@
-import ScrollTrigger from 'scrolltrigger-classes/ScrollTrigger.min'
+import ScrollTrigger from 'scrolltrigger-classes/ScrollTrigger.min';
 
-document.addEventListener('DOMContentLoaded', () => {
-    window.onanimationiteration = console.log;
-    let trigger = new ScrollTrigger({
+window.onload = () => {
+    console.log("OnLoad")
+    new ScrollTrigger({
         toggle: {
             visible: 'reveal-text',
             hidden: 'invisible'
@@ -15,6 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
         once: true
     }, document.body, window);
 
+    let name = document.querySelectorAll('.name');
+    for (let i = 0; i < name.length; i++) {
+        name[i].classList.add('reveal-text');
+        name[i].classList.remove('invisible');
+    }
+    let content = document.querySelector(".content");
+    content.classList.add('loaded');
+
     window.mobileAndTabletcheck = () => {
         let check = false;
         ((a) => {
@@ -26,9 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     if (!window.mobileAndTabletcheck()) {
-        console.log("Using cursor.js");
-        let cursor = document.createElement("DIV");
-        cursor.setAttribute("class", "custom-cursor");
+        console.log('Using cursor.js');
+        let cursor = document.createElement('DIV');
+        cursor.setAttribute('class', 'custom-cursor');
         document.body.appendChild(cursor);
         let links = document.querySelectorAll('a');
         let initCursor = false;
@@ -59,4 +67,5 @@ document.addEventListener('DOMContentLoaded', () => {
             initCursor = false;
         };
     }
-});
+};
+
