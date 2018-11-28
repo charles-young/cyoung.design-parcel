@@ -1,7 +1,8 @@
-import ScrollTrigger from 'scrolltrigger-classes/ScrollTrigger.min';
+//import ScrollTrigger from 'scrolltrigger-classes/ScrollTrigger.min';
 
 window.onload = () => {
-    console.log("Loaded")
+    console.log("Loaded");
+    /*
     new ScrollTrigger({
         toggle: {
             visible: 'reveal-text',
@@ -14,6 +15,7 @@ window.onload = () => {
         addHeight: true,
         once: true
     }, document.body, window);
+    */
 
     let name = document.querySelectorAll('.name');
     for (let i = 0; i < name.length; i++) {
