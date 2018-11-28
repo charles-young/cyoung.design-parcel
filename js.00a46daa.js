@@ -117,7 +117,7 @@ var _ScrollTrigger = _interopRequireDefault(require("scrolltrigger-classes/Scrol
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 window.onload = function () {
-  console.log("OnLoad");
+  console.log("Loaded");
   new _ScrollTrigger.default({
     toggle: {
       visible: 'reveal-text',
@@ -137,8 +137,11 @@ window.onload = function () {
     name[i].classList.remove('invisible');
   }
 
-  var content = document.querySelector(".content");
-  content.classList.add('loaded');
+  var fade = document.querySelectorAll(".fade-in");
+
+  for (var _i = 0; _i < fade.length; _i++) {
+    fade[_i].classList.add('loaded');
+  }
 
   window.mobileAndTabletcheck = function () {
     var check = false;
@@ -161,12 +164,12 @@ window.onload = function () {
       var links = document.querySelectorAll('a');
       var initCursor = false;
 
-      for (var _i = 0; _i < links.length; _i++) {
-        links[_i].addEventListener('mouseover', function () {
+      for (var _i2 = 0; _i2 < links.length; _i2++) {
+        links[_i2].addEventListener('mouseover', function () {
           cursor.classList.add('custom-cursor--big');
         });
 
-        links[_i].addEventListener('mouseout', function () {
+        links[_i2].addEventListener('mouseout', function () {
           cursor.classList.remove('custom-cursor--big');
         });
       }
@@ -188,7 +191,115 @@ window.onload = function () {
         initCursor = false;
       };
     })();
+  } //snow
+
+
+  (function () {
+    window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
+      window.setTimeout(callback, 1000 / 60);
+    };
+  })();
+
+  var flakes = [],
+      canvas = document.getElementById("canvas"),
+      ctx = canvas.getContext("2d"),
+      flakeCount = 400,
+      mX = -100,
+      mY = -100;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  function snow() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (var _i3 = 0; _i3 < flakeCount; _i3++) {
+      var flake = flakes[_i3],
+          x = mX,
+          y = mY,
+          minDist = 150,
+          x2 = flake.x,
+          y2 = flake.y;
+      var dist = Math.sqrt((x2 - x) * (x2 - x) + (y2 - y) * (y2 - y));
+
+      if (dist < minDist) {
+        var force = minDist / (dist * dist),
+            xcomp = (x - x2) / dist,
+            ycomp = (y - y2) / dist,
+            deltaV = force / 2;
+        flake.velX -= deltaV * xcomp;
+        flake.velY -= deltaV * ycomp;
+      } else {
+        flake.velX *= .98;
+
+        if (flake.velY <= flake.speed) {
+          flake.velY = flake.speed;
+        }
+
+        flake.velX += Math.cos(flake.step += .05) * flake.stepSize;
+      }
+
+      ctx.fillStyle = "rgba(255,255,255," + flake.opacity + ")";
+      flake.y += flake.velY;
+      flake.x += flake.velX;
+
+      if (flake.y >= canvas.height || flake.y <= 0) {
+        reset(flake);
+      }
+
+      if (flake.x >= canvas.width || flake.x <= 0) {
+        reset(flake);
+      }
+
+      ctx.beginPath();
+      ctx.arc(flake.x, flake.y, flake.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    requestAnimationFrame(snow);
   }
+
+  function reset(flake) {
+    flake.x = Math.floor(Math.random() * canvas.width);
+    flake.y = 0;
+    flake.size = Math.random() * 3 + 2;
+    flake.speed = Math.random() + 0.5;
+    flake.velY = flake.speed;
+    flake.velX = 0;
+    flake.opacity = Math.random() * 0.5 + 0.3;
+  }
+
+  function init() {
+    for (var _i4 = 0; _i4 < flakeCount; _i4++) {
+      var x = Math.floor(Math.random() * canvas.width),
+          y = Math.floor(Math.random() * canvas.height),
+          size = Math.random() * 3 + 2,
+          speed = Math.random() + 0.5,
+          opacity = Math.random() * 0.5 + 0.3;
+      flakes.push({
+        speed: speed,
+        velY: speed,
+        velX: 0,
+        x: x,
+        y: y,
+        size: size,
+        stepSize: Math.random() / 30,
+        step: 0,
+        opacity: opacity
+      });
+    }
+
+    snow();
+  }
+
+  document.addEventListener("mousemove", function (e) {
+    mX = e.clientX;
+    mY = e.clientY;
+  });
+  window.addEventListener("resize", function () {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+  init();
 };
 },{"scrolltrigger-classes/ScrollTrigger.min":"../node_modules/scrolltrigger-classes/ScrollTrigger.min.js"}],"../../../../.nvm/versions/node/v8.12.0/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -217,7 +328,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57882" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60775" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
