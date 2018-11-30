@@ -813,6 +813,11 @@ h3 {
 }
 
 .gradient4::after, .gradient4::before {
+  background-color: #8E2DE2;
+  background-image: linear-gradient(45deg, #8E2DE2, #4A00E0) !important;
+}
+
+.gradient5::after, .gradient5::before {
   background-color: #005bea;
   background-image: linear-gradient(45deg, #005bea, #00c6fb) !important;
 }
