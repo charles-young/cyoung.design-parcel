@@ -343,23 +343,32 @@ template {
   opacity: 0;
   pointer-events: none;
   cursor: none;
-  mix-blend-mode: difference;
+  background: #000;
   width: 15px;
   height: 15px;
   border-radius: 100%;
-  background-color: #fff;
   transition: -webkit-transform 350ms ease;
   transition: transform 350ms ease;
   transition: transform 350ms ease, -webkit-transform 350ms ease;
   transition-property: opacity, height, width, -webkit-transform;
   transition-property: transform, opacity, height, width;
   transition-property: transform, opacity, height, width, -webkit-transform;
-  -webkit-transform: translate(-50%, -50%) translate3d(0, 0, 0);
-          transform: translate(-50%, -50%) translate3d(0, 0, 0);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   z-index: 9999;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border: 2px solid #fff;
   will-change: top, left;
 }
 
+@supports (mix-blend-mode: difference) {
+  .custom-cursor {
+    mix-blend-mode: difference;
+    background: #fff;
+    border: none;
+    box-shadow: none;
+  }
+}
 .custom-cursor--big {
   width: 100px;
   height: 100px;
@@ -387,8 +396,6 @@ template {
   position: absolute;
   right: 0;
   z-index: -1;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
 }
 .angle--bottom-right:after {
   bottom: 0;
@@ -411,8 +418,6 @@ template {
   position: absolute;
   right: 0;
   z-index: -1;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
 }
 .angle--bottom-left:after {
   bottom: 0;
@@ -435,8 +440,6 @@ template {
   position: absolute;
   right: 0;
   z-index: -1;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
 }
 .angle--top-right:before {
   top: 0;
@@ -459,8 +462,6 @@ template {
   position: absolute;
   right: 0;
   z-index: -1;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
 }
 .angle--top-left:before {
   top: 0;
@@ -483,8 +484,6 @@ template {
   position: absolute;
   right: 0;
   z-index: -1;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
 }
 .angle--both-right-right:before {
   top: 0;
@@ -514,8 +513,6 @@ template {
   position: absolute;
   right: 0;
   z-index: -1;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
 }
 .angle--both-left-right:before {
   top: 0;
@@ -545,8 +542,6 @@ template {
   position: absolute;
   right: 0;
   z-index: -1;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
 }
 .angle--both-left-left:before {
   top: 0;
@@ -576,8 +571,6 @@ template {
   position: absolute;
   right: 0;
   z-index: -1;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
 }
 .angle--both-right-left:before {
   top: 0;
@@ -650,14 +643,10 @@ body {
 }
 
 .loaded {
-  -webkit-transform: translateY(0);
-          transform: translateY(0);
   opacity: 1;
 }
 
 header#title {
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
   height: 100vh;
   display: flex;
   width: 100%;
@@ -689,12 +678,8 @@ header#title h1 {
   transition-duration: 1s;
   transition-delay: 0.5s;
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-  -webkit-transform: translateY(10vh);
-          transform: translateY(10vh);
 }
 .content section, .content footer {
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
   margin-top: 15vw;
   background: #F1F3F4;
   color: #323232;
@@ -810,8 +795,6 @@ h3 {
 }
 
 .reveal-text, .reveal-text::after {
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
   -webkit-animation-duration: 1s;
           animation-duration: 1s;
   -webkit-animation-delay: 0.5s;
