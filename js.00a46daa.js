@@ -105,24 +105,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   // Override the current require with this new one
   return newRequire;
 })({"js/index.js":[function(require,module,exports) {
-//import ScrollTrigger from 'scrolltrigger-classes/ScrollTrigger.min';
 window.onload = function () {
   console.log("Loaded");
-  /*
-  new ScrollTrigger({
-      toggle: {
-          visible: 'reveal-text',
-          hidden: 'invisible'
-      },
-      offset: {
-          x: 0,
-          y: 20
-      },
-      addHeight: true,
-      once: true
-  }, document.body, window);
-  */
-
   var name = document.querySelectorAll('.name');
 
   for (var i = 0; i < name.length; i++) {
@@ -166,27 +150,8 @@ window.onload = function () {
           cursor.classList.remove('custom-cursor--big');
         });
       }
-      /*
-      cursor.classList.add('custom-cursor--showing');
-       let mousePosition = {x: 0, y: 0};
-       document.addEventListener('mousemove', e => {
-          mousePosition.x = e.clientX;
-          mousePosition.y = e.clientY;
-      }, false);
-       function animate(event){
-          targetX = mousePosition.x - cursor.getBoundingClientRect().left;
-          targetY = mousePosition.y - cursor.getBoundingClientRect().top;
-          if(clicked!=true){
-              if(is_inside(pointx,pointy)){
-                  move();
-              }else{
-                  canvas.style.cursor = "auto";
-                  moveLeft();
-              }
-          }
-      }
-      */
 
+      cursor.classList.add('custom-cursor--showing');
 
       window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (f) {
         return setTimeout(f, 1000 / 60);
@@ -208,16 +173,16 @@ window.onload = function () {
         if (!initCursor) {
           cursor.classList.add('custom-cursor--showing');
           initCursor = true;
-        } else {
-          requestAnimationFrame(function () {
-            cursor.style.top = mouseY + 'px';
-            cursor.style.left = mouseX + 'px';
-            cursor.style.cssText = 'left: ' + mouseX + 'px; top: ' + mouseY + 'px;';
-          });
         }
+
+        requestAnimationFrame(function () {
+          //cursor.style.top = mouseY + 'px';
+          //cursor.style.left = mouseX + 'px';
+          cursor.style.cssText = 'left: ' + mouseX + 'px; top: ' + mouseY + 'px;';
+        });
       };
 
-      window.onmouseout = function () {
+      document.onmouseleave = function () {
         cursor.classList.remove('custom-cursor--showing');
         initCursor = false;
       };
@@ -359,7 +324,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61967" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55121" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
