@@ -107,6 +107,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"js/index.js":[function(require,module,exports) {
 window.onload = function () {
   console.log("Loaded");
+
+  function atOnload() {
+    initAnalytics();
+  }
+
+  if (window.addEventListener) window.addEventListener("load", atOnload, false);else if (window.attachEvent) window.attachEvent("onload", atOnload);else window.onload = atOnload;
   var name = document.querySelectorAll('.name');
 
   for (var i = 0; i < name.length; i++) {
@@ -318,7 +324,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61997" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52244" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

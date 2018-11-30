@@ -104,79 +104,122 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"../../../../.nvm/versions/node/v8.12.0/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
+})({"js/canvas.js":[function(require,module,exports) {
+window.onload = function () {
+  console.log("Snow Created");
 
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
+  window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (f) {
+    return setTimeout(f, 1000 / 60);
+  }; // simulate calling code 60
 
-  return bundleURL;
-}
 
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^)\n]+/g);
+  window.cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame || function (requestID) {
+    clearTimeout(requestID);
+  }; //fall back
 
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
 
-  return '/';
-}
+  var flakes = [],
+      canvas = document.getElementById("canvas"),
+      ctx = canvas.getContext("2d"),
+      flakeCount = 400,
+      mX = -100,
+      mY = -100;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
+  function snow() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../../../../.nvm/versions/node/v8.12.0/lib/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
+    for (var i = 0; i < flakeCount; i++) {
+      var flake = flakes[i],
+          x = mX,
+          y = mY,
+          minDist = 150,
+          x2 = flake.x,
+          y2 = flake.y;
+      var dist = Math.sqrt((x2 - x) * (x2 - x) + (y2 - y) * (y2 - y));
 
-function updateLink(link) {
-  var newLink = link.cloneNode();
+      if (dist < minDist) {
+        var force = minDist / (dist * dist),
+            xcomp = (x - x2) / dist,
+            ycomp = (y - y2) / dist,
+            deltaV = force / 2;
+        flake.velX -= deltaV * xcomp;
+        flake.velY -= deltaV * ycomp;
+      } else {
+        flake.velX *= .98;
 
-  newLink.onload = function () {
-    link.remove();
-  };
+        if (flake.velY <= flake.speed) {
+          flake.velY = flake.speed;
+        }
 
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
+        flake.velX += Math.cos(flake.step += .05) * flake.stepSize;
       }
+
+      ctx.fillStyle = "rgba(255,255,255," + flake.opacity + ")";
+      flake.y += flake.velY;
+      flake.x += flake.velX;
+
+      if (flake.y >= canvas.height || flake.y <= 0) {
+        reset(flake);
+      }
+
+      if (flake.x >= canvas.width || flake.x <= 0) {
+        reset(flake);
+      }
+
+      ctx.beginPath();
+      ctx.arc(flake.x, flake.y, flake.size, 0, Math.PI * 2);
+      ctx.fill();
     }
 
-    cssTimeout = null;
-  }, 50);
-}
+    requestAnimationFrame(snow);
+  }
 
-module.exports = reloadCSS;
-},{"./bundle-url":"../../../../.nvm/versions/node/v8.12.0/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"scss/app.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
+  function reset(flake) {
+    flake.x = Math.floor(Math.random() * canvas.width);
+    flake.y = 0;
+    flake.size = Math.random() * 3 + 2;
+    flake.speed = Math.random() + 0.5;
+    flake.velY = flake.speed;
+    flake.velX = 0;
+    flake.opacity = Math.random() * 0.5 + 0.3;
+  }
 
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../.nvm/versions/node/v8.12.0/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../../../.nvm/versions/node/v8.12.0/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+  function init() {
+    for (var i = 0; i < flakeCount; i++) {
+      var x = Math.floor(Math.random() * canvas.width),
+          y = Math.floor(Math.random() * canvas.height),
+          size = Math.random() * 3 + 2,
+          speed = Math.random() + 0.5,
+          opacity = Math.random() * 0.5 + 0.3;
+      flakes.push({
+        speed: speed,
+        velY: speed,
+        velX: 0,
+        x: x,
+        y: y,
+        size: size,
+        stepSize: Math.random() / 30,
+        step: 0,
+        opacity: opacity
+      });
+    }
+
+    snow();
+  }
+
+  document.addEventListener("mousemove", function (e) {
+    mX = e.clientX;
+    mY = e.clientY;
+  });
+  window.addEventListener("resize", function () {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+  init();
+};
+},{}],"../../../../.nvm/versions/node/v8.12.0/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -203,7 +246,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52244" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65505" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
@@ -345,4 +388,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},["../../../../.nvm/versions/node/v8.12.0/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
+},{}]},{},["../../../../.nvm/versions/node/v8.12.0/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/canvas.js"], null)
+//# sourceMappingURL=/canvas.3c4ee9e8.map
