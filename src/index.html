@@ -1,11 +1,49 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#323232">
+    <meta name="robots" content="follow">
+    <meta name="author" content="Charles Young">
+    <meta name="Description"
+          content="Charles Young is a web developer with years of real-world web design and development experience.  I utilize frameworks such React to build high-performance web experiences but also have an extensive understanding of DOM manipulation with vanilla JS.">
     <title>Charles Young</title>
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <link rel="icon" sizes="16x16 32x32 64x64" href="/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="196x196" href="/favicon/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="160x160" href="/favicon/favicon-160.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon/favicon-64.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16.png">
+    <link rel="apple-touch-icon" href="/favicon/favicon-57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicon/favicon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon/favicon-72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicon/favicon-144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicon/favicon-60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicon/favicon-120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicon/favicon-76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicon/favicon-152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/favicon-180.png">
+    <meta name="msapplication-TileColor" content="#323232">
+    <meta name="msapplication-TileImage" content="/favicon/favicon-144.png">
+    <meta name="msapplication-config" content="/favicon/browserconfig.xml">
     <link rel="stylesheet" href="./scss/app.scss">
     <script defer src="./js/index.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111572734-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-111572734-1');
+    </script>
 </head>
+
 <body>
 <canvas id="canvas" class="fade-in"></canvas>
 <header id='title'>
@@ -14,34 +52,7 @@
 </header>
 <div class='content fade-in'>
     <section class='angle--both-left-left'>
-        <!--<div class='code'>
-            <pre>class App extends Component &#123;</pre>
-            <pre>    render(</pre>
-            <pre>        &lt;div className='App'&gt;</pre>
-            <pre>        &lt;header className='title'&gt;</pre>
-            <pre>            &lt;h1 className='reveal-text'&gt;Charles&lt;/h1&gt;</pre>
-            <pre>            &lt;br/&gt;</pre>
-            <pre>            &lt;h1 className='reveal-text'&gt;Young&lt;/h1&gt;</pre>
-            <pre>        &lt;\header&gt;</pre>
-            <pre>        &lt;section className='angle--both-left-right code-background'&gt;</pre>
-            <pre>             &lt;h1 data-scroll="once" class="gradient1"&gt;Languages and Frameworks&lt;/h1&gt;</pre>
-            <pre>             &lt;ul&gt;</pre>
-            <pre>                  &lt;li&gt;HTML&lt;/li&gt;</pre>
-            <pre>                  &lt;li&gt;CSS/SCSS/SASS&lt;/li&gt;</pre>
-            <pre>                  &lt;li&gt;ES6+ JS&lt;/li&gt;</pre>
-            <pre>                  &lt;li&gt;React&lt;/li&gt;</pre>
-            <pre>                  &lt;li&gt;React Native&lt;/li&gt;</pre>
-            <pre>                  &lt;li&gt;Vue.js&lt;/li&gt;</pre>
-            <pre>                  &lt;li&gt;Nuxt.js&lt;/li&gt;</pre>
-            <pre>                  &lt;li&gt;Node.js and NPM&lt;/li&gt;</pre>
-            <pre>                  &lt;li&gt;Java&lt;/li&gt;</pre>
-            <pre>                  &lt;li&gt;C, C++&lt;/li&gt;</pre>
-            <pre>             &lt;/ul&gt;</pre>
-            <pre>        &lt;/section&gt;</pre>
-            <pre>    );</pre>
-            <pre>&#125;</pre>
-        </div>-->
-        <h1 data-scroll="once" class="gradient1">Languages and Frameworks</h1>
+        <h1 data-scroll class="gradient1">Languages and Frameworks</h1>
         <ul>
             <li>HTML</li>
             <li>CSS/SCSS/SASS</li>
@@ -56,10 +67,9 @@
             <li>C, C++</li>
         </ul>
     </section>
-    <!--<section class='angle--both-right-left mask'>-->
     </section>
     <section class='angle--both-right-right'>
-        <h1 data-scroll="once" class="gradient2">Experience & Leadership</h1>
+        <h1 data-scroll class="gradient2">Experience & Leadership</h1>
         <h3>Freelance Web Developer</h3>
         <ul>
             <li>Launched 4 high-performance web experiences for businesses nationwide.</li>
@@ -127,7 +137,7 @@
         </ul>
     </section>
     <section class='angle--both-left-right'>
-        <h1 data-scroll="once" class="gradient3">Sample Projects</h1>
+        <h1 data-scroll class="gradient3">Sample Projects</h1>
         <h3>Market Builders Inc.</h3>
         <p>I did a brand refresh including a new icon, website, and documents. The site scored 99/100 on
             Google Page Speed test and was built with a modern and unique UI written in Nuxt.js. Source
@@ -137,22 +147,22 @@
         <h3>Infix to Postfix Converter</h3>
         <p>A new infix to postfix converter which utilized a custom stack adt in addition to a minimal
             react app which would calculate the reverse polish notation from an infix expression. Source
-            code can be found <a
+            code can be found at <a
                     href='https://github.com/charles-young/infix-to-postfix-react' class='inline'
                     target='_blank'
-                    rel='noreferrer noopener'>here</a>.</p>
+                    rel='noreferrer noopener'>GitHub</a>.</p>
         <h3>Supplemental Lighting Experiment</h3>
         <p>I created a supplemental light with a RBG LED strip attached to a Raspberry Pi that will
             match the outside sun level almost perfectly by using a mix of weather data and
             mathematically calculating the sun position. I came up with the project to give my roommate
             a dynamic light in our apartment since there were no windows in his room. The NPM module source can be
-            downloaded <a
+            downloaded at <a
                     href="https://github.com/charles-young/supplemental-lighting" class='inline'
                     target='_blank'
-                    rel='noreferrer noopener'>here</a>.</p>
+                    rel='noreferrer noopener'>GitHub</a>.</p>
     </section>
     <footer class='angle--top-left'>
-        <h1 data-scroll="once" class="gradient4">Social Links</h1>
+        <h1 data-scroll class="gradient4">Social Links</h1>
         <nav>
             <a href='https://charlesyoung.info'
                target='_blank'
@@ -161,6 +171,8 @@
             <a href='https://github.com/charles-young'
                target='_blank'
                rel='noreferrer noopener'>GitHub</a>
+            <br>
+            <a href='mailto:hey@cyoung.design'>Email</a>
             <br/>
             <a href='https://github.com/charles-young'
                target='_blank'

@@ -1,8 +1,8 @@
-//import ScrollTrigger from 'scrolltrigger-classes/ScrollTrigger.min';
+import ScrollTrigger from 'scrolltrigger-classes';
 
 window.onload = () => {
     console.log("Loaded");
-    /*
+
     new ScrollTrigger({
         toggle: {
             visible: 'reveal-text',
@@ -15,7 +15,6 @@ window.onload = () => {
         addHeight: true,
         once: true
     }, document.body, window);
-    */
 
     let name = document.querySelectorAll('.name');
     for (let i = 0; i < name.length; i++) {
@@ -26,6 +25,20 @@ window.onload = () => {
     for (let i = 0; i < fade.length; i++) {
         fade[i].classList.add('loaded');
     }
+
+    window.requestAnimationFrame = window.requestAnimationFrame
+        || window.mozRequestAnimationFrame
+        || window.webkitRequestAnimationFrame
+        || window.msRequestAnimationFrame
+        || function (f) {
+            return setTimeout(f, 1000 / 60)
+        }; // simulate calling code 60
+
+    window.cancelAnimationFrame = window.cancelAnimationFrame
+        || window.mozCancelAnimationFrame
+        || function (requestID) {
+            clearTimeout(requestID)
+        }; //fall back
 
     window.mobileAndTabletcheck = () => {
         let check = false;
@@ -54,39 +67,41 @@ window.onload = () => {
             });
         }
 
+        cursor.classList.add('custom-cursor--showing');
+
+        let mouseX;
+        let mouseY;
         window.onmousemove = (e) => {
-            let mouseX = e.clientX;
-            let mouseY = e.clientY;
+            mouseX = e.clientX;
+            mouseY = e.clientY;
 
             if (!initCursor) {
                 cursor.classList.add('custom-cursor--showing');
                 initCursor = true;
-            } else {
-                cursor.style.cssText = 'top: ' + mouseY + 'px; left:' + mouseX + 'px;';
             }
+            requestAnimationFrame(() => {
+                //cursor.style.top = mouseY + 'px';
+                //cursor.style.left = mouseX + 'px';
+                cursor.style.cssText = 'left: ' + mouseX + 'px; top: ' + mouseY + 'px;';
+            });
         };
 
-        window.onmouseout = () => {
+        document.onmouseleave = () => {
             cursor.classList.remove('custom-cursor--showing');
             initCursor = false;
+            mX = 0;
+            mY = 0;
         };
     }
 
     //snow
-    (() => {
-        window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame ||
-            function (callback) {
-                window.setTimeout(callback, 1000 / 60);
-            };
-    })();
-
-
     let flakes = [],
         canvas = document.getElementById("canvas"),
         ctx = canvas.getContext("2d"),
-        flakeCount = 400,
+        flakeCount = Math.floor(window.innerHeight * window.innerWidth / 2000),
         mX = -100,
         mY = -100;
+    console.log("Snow created with " + flakeCount + " flakes");
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -112,11 +127,10 @@ window.onload = () => {
 
                 flake.velX -= deltaV * xcomp;
                 flake.velY -= deltaV * ycomp;
-
             } else {
                 flake.velX *= .98;
                 if (flake.velY <= flake.speed) {
-                    flake.velY = flake.speed
+                    flake.velY += flake.speed * .09;
                 }
                 flake.velX += Math.cos(flake.step += .05) * flake.stepSize;
             }
@@ -175,10 +189,12 @@ window.onload = () => {
         snow();
     }
 
-    document.addEventListener("mousemove", (e) => {
-        mX = e.clientX;
-        mY = e.clientY;
-    });
+    if (!window.mobileAndTabletcheck()) {
+        document.addEventListener("mousemove", (e) => {
+            mX = e.clientX;
+            mY = e.clientY;
+        });
+    }
 
     window.addEventListener("resize", () => {
         canvas.width = window.innerWidth;

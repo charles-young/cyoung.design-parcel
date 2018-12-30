@@ -14,7 +14,7 @@
       position: absolute;
       right: 0;
       z-index: -1;
-      backface-visibility: hidden;
+      //backface-visibility: hidden;
     }
 
     @if $pseudo == 'before' {
