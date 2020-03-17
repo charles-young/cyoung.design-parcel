@@ -13,17 +13,17 @@
   "author": "Charles Young <young.charles90@gmail.com> (https://cyoung.design)",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.1.5",
-    "@babel/preset-env": "^7.1.5",
-    "@babel/preset-react": "^7.0.0",
-    "cssnano": "^4.1.7",
-    "sass": "^1.14.3"
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/preset-react": "^7.8.3",
+    "cssnano": "^4.1.10",
+    "sass": "^1.26.3"
   },
   "dependencies": {
-    "autoprefixer": "^9.3.1",
+    "autoprefixer": "^9.7.4",
     "cursor": "^0.1.5",
-    "gh-pages": "^2.0.1",
-    "postcss-modules": "^1.4.1",
+    "gh-pages": "^2.2.0",
+    "postcss-modules": "^1.5.0",
     "postcss-scss": "^2.0.0",
     "scrolltrigger-classes": "^0.3.6"
   }
