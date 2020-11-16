@@ -347,14 +347,9 @@ template {
   width: 15px;
   height: 15px;
   border-radius: 100%;
-  transition: -webkit-transform 400ms ease;
   transition: transform 400ms ease;
-  transition: transform 400ms ease, -webkit-transform 400ms ease;
-  transition-property: opacity, height, width, border, -webkit-transform;
   transition-property: transform, opacity, height, width, border;
-  transition-property: transform, opacity, height, width, border, -webkit-transform;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   z-index: 9999;
   border: 2px solid #fff;
   will-change: top, left;
@@ -392,10 +387,8 @@ template {
 }
 .angle--bottom-right:after {
   bottom: 0;
-  -webkit-transform: skewY(-3deg);
-          transform: skewY(-3deg);
-  -webkit-transform-origin: 100%;
-          transform-origin: 100%;
+  transform: skewY(-3deg);
+  transform-origin: 100%;
 }
 
 .angle--bottom-left {
@@ -414,10 +407,8 @@ template {
 }
 .angle--bottom-left:after {
   bottom: 0;
-  -webkit-transform: skewY(-3deg);
-          transform: skewY(-3deg);
-  -webkit-transform-origin: 100%;
-          transform-origin: 100%;
+  transform: skewY(-3deg);
+  transform-origin: 100%;
 }
 
 .angle--top-right {
@@ -436,10 +427,8 @@ template {
 }
 .angle--top-right:before {
   top: 0;
-  -webkit-transform: skewY(3deg);
-          transform: skewY(3deg);
-  -webkit-transform-origin: 100% 0;
-          transform-origin: 100% 0;
+  transform: skewY(3deg);
+  transform-origin: 100% 0;
 }
 
 .angle--top-left {
@@ -458,10 +447,8 @@ template {
 }
 .angle--top-left:before {
   top: 0;
-  -webkit-transform: skewY(-3deg);
-          transform: skewY(-3deg);
-  -webkit-transform-origin: 0 0;
-          transform-origin: 0 0;
+  transform: skewY(-3deg);
+  transform-origin: 0 0;
 }
 
 .angle--both-right-right {
@@ -480,17 +467,13 @@ template {
 }
 .angle--both-right-right:before {
   top: 0;
-  -webkit-transform: skewY(3deg);
-          transform: skewY(3deg);
-  -webkit-transform-origin: 100% 0;
-          transform-origin: 100% 0;
+  transform: skewY(3deg);
+  transform-origin: 100% 0;
 }
 .angle--both-right-right:after {
   bottom: 0;
-  -webkit-transform: skewY(-3deg);
-          transform: skewY(-3deg);
-  -webkit-transform-origin: 100%;
-          transform-origin: 100%;
+  transform: skewY(-3deg);
+  transform-origin: 100%;
 }
 
 .angle--both-left-right {
@@ -509,17 +492,13 @@ template {
 }
 .angle--both-left-right:before {
   top: 0;
-  -webkit-transform: skewY(-3deg);
-          transform: skewY(-3deg);
-  -webkit-transform-origin: 0 0;
-          transform-origin: 0 0;
+  transform: skewY(-3deg);
+  transform-origin: 0 0;
 }
 .angle--both-left-right:after {
   bottom: 0;
-  -webkit-transform: skewY(-3deg);
-          transform: skewY(-3deg);
-  -webkit-transform-origin: 100%;
-          transform-origin: 100%;
+  transform: skewY(-3deg);
+  transform-origin: 100%;
 }
 
 .angle--both-left-left {
@@ -538,17 +517,13 @@ template {
 }
 .angle--both-left-left:before {
   top: 0;
-  -webkit-transform: skewY(-3deg);
-          transform: skewY(-3deg);
-  -webkit-transform-origin: 0 0;
-          transform-origin: 0 0;
+  transform: skewY(-3deg);
+  transform-origin: 0 0;
 }
 .angle--both-left-left:after {
   bottom: 0;
-  -webkit-transform: skewY(3deg);
-          transform: skewY(3deg);
-  -webkit-transform-origin: 0 0;
-          transform-origin: 0 0;
+  transform: skewY(3deg);
+  transform-origin: 0 0;
 }
 
 .angle--both-right-left {
@@ -567,17 +542,13 @@ template {
 }
 .angle--both-right-left:before {
   top: 0;
-  -webkit-transform: skewY(3deg);
-          transform: skewY(3deg);
-  -webkit-transform-origin: 100% 0;
-          transform-origin: 100% 0;
+  transform: skewY(3deg);
+  transform-origin: 100% 0;
 }
 .angle--both-right-left:after {
   bottom: 0;
-  -webkit-transform: skewY(3deg);
-          transform: skewY(3deg);
-  -webkit-transform-origin: 0 0;
-          transform-origin: 0 0;
+  transform: skewY(3deg);
+  transform-origin: 0 0;
 }
 
 code {
@@ -676,8 +647,7 @@ header#title h1 {
   color: #323232;
   line-height: 1.5em;
   padding: 2rem 7vw;
-  -webkit-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
   z-index: 2;
 }
 .content section div, .content footer div {
@@ -843,10 +813,8 @@ h3 {
   bottom: 0;
   right: 0;
   background-color: #323232;
-  -webkit-transform: scaleX(0);
-          transform: scaleX(0);
-  -webkit-transform-origin: 0 50%;
-          transform-origin: 0 50%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
   -webkit-animation-name: revealer-text;
           animation-name: revealer-text;
 }
@@ -874,38 +842,30 @@ h3 {
 }
 @-webkit-keyframes revealer-text {
   0%, 50% {
-    -webkit-transform-origin: 0 50%;
-            transform-origin: 0 50%;
+    transform-origin: 0 50%;
   }
   60%, 100% {
-    -webkit-transform-origin: 100% 50%;
-            transform-origin: 100% 50%;
+    transform-origin: 100% 50%;
   }
   60% {
-    -webkit-transform: scaleX(1);
-            transform: scaleX(1);
+    transform: scaleX(1);
   }
   100% {
-    -webkit-transform: scaleX(0);
-            transform: scaleX(0);
+    transform: scaleX(0);
   }
 }
 @keyframes revealer-text {
   0%, 50% {
-    -webkit-transform-origin: 0 50%;
-            transform-origin: 0 50%;
+    transform-origin: 0 50%;
   }
   60%, 100% {
-    -webkit-transform-origin: 100% 50%;
-            transform-origin: 100% 50%;
+    transform-origin: 100% 50%;
   }
   60% {
-    -webkit-transform: scaleX(1);
-            transform: scaleX(1);
+    transform: scaleX(1);
   }
   100% {
-    -webkit-transform: scaleX(0);
-            transform: scaleX(0);
+    transform: scaleX(0);
   }
 }
 
